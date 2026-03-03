@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adinath Chipparage | Animated Portfolio</title>
+  <meta name="description" content="Animated portfolio and resume experience for Adinath Chipparage." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="preloader" id="preloader" aria-live="polite">
+    <div class="robot-zone">
+      <div class="robot-wrap" id="robotWrap">
+        <div class="robot">
+          <div class="robot-antenna"></div>
+          <div class="robot-head">
+            <span class="eye"></span>
+            <span class="eye"></span>
+          </div>
+          <div class="robot-body"></div>
+          <div class="robot-shadow"></div>
+        </div>
+      </div>
+      <div class="intro-text-wrap">
+        <p class="line greeting" id="greetingLine"></p>
+        <p class="line intro-line" id="introduceLine"></p>
+      </div>
+    </div>
+
+    <div class="burst" id="burstText">
+      <span>FULL STACK</span>
+      <span>ENGINEER</span>
+    </div>
+
+    <p class="typed-intro" id="typedIntro"></p>
+  </div>
+
+  <div class="door-transition" id="doorTransition" aria-hidden="true">
+    <div class="door-panel left"></div>
+    <div class="door-panel right"></div>
+  </div>
+
+  <main id="mainContent" class="main-content">
+    <header class="topbar">
+      <h1>Adinath Chipparage</h1>
+      <a href="assests/myres.pdf" target="_blank" rel="noopener noreferrer">Open PDF Resume</a>
+    </header>
+
+    <section class="resume-shell">
+      <aside class="resume-left card reveal">
+        <h2>Profile</h2>
+        <p>
+          Full-stack developer focused on scalable backend systems, high-performance frontend interfaces, and practical AI workflows.
+        </p>
+
+        <h3>Contact</h3>
+        <ul>
+          <li>Email: <a href="mailto:adinathchipparage@gmail.com">adinathchipparage@gmail.com</a></li>
+          <li>GitHub: <a href="https://github.com/adinath123" target="_blank" rel="noopener noreferrer">adinath123</a></li>
+          <li>LinkedIn: <a href="https://linkedin.com/in/adinath-chipparage" target="_blank" rel="noopener noreferrer">adinath-chipparage</a></li>
+        </ul>
+
+        <h3>Core Skills</h3>
+        <div class="chips">
+          <span>JavaScript</span>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>Express</span>
+          <span>MongoDB</span>
+          <span>REST APIs</span>
+          <span>Git</span>
+          <span>Python</span>
+        </div>
+      </aside>
+
+      <section class="resume-right card reveal">
+        <h2>Experience Highlights</h2>
+        <article>
+          <h3>Full Stack Projects</h3>
+          <p>Built complete products from authentication and database design to polished responsive UI with deployment-ready architecture.</p>
+        </article>
+        <article>
+          <h3>Frontend Engineering</h3>
+          <p>Created animated, accessible interfaces with careful attention to load performance, visual hierarchy, and component reuse.</p>
+        </article>
+        <article>
+          <h3>Backend Reliability</h3>
+          <p>Implemented structured APIs, validation workflows, and resilient service layers for maintainable long-term development.</p>
+        </article>
+      </section>
+    </section>
+
+    <section class="project-strip">
+      <article class="project card reveal">
+        <img src="assests/1.png" alt="Portfolio CMS preview" />
+        <h3>Portfolio CMS</h3>
+      </article>
+      <article class="project card reveal">
+        <img src="assests/2.png" alt="Landing page preview" />
+        <h3>Animated Landing Page</h3>
+      </article>
+      <article class="project card reveal">
+        <img src="assests/3.png" alt="Assistant UI preview" />
+        <h3>Assistant Interface</h3>
+      </article>
+    </section>
+
+    <section class="pdf-panel card reveal">
+      <h2>Interactive Resume View</h2>
+      <p>Use the embedded view or open the full PDF in a new tab.</p>
+      <iframe src="assests/myres.pdf" title="Resume PDF"></iframe>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
