@@ -32,7 +32,7 @@
 
     <div class="burst" id="burstText">
       <span>FULL STACK</span>
-      <span>ENGINEER</span>
+      <span>MACHINE LEARNING ENTHUSIAST</span>
     </div>
 
     <p class="typed-intro" id="typedIntro"></p>
@@ -53,7 +53,7 @@
       <aside class="resume-left card reveal">
         <h2>Profile</h2>
         <p>
-          Full-stack developer focused on scalable backend systems, high-performance frontend interfaces, and practical AI workflows.
+          Full-stack web developer and machine learning enthusiast with growing hands-on interest in data analytics.
         </p>
 
         <h3>Contact</h3>
@@ -65,14 +65,23 @@
 
         <h3>Core Skills</h3>
         <div class="chips">
-          <span>JavaScript</span>
-          <span>React</span>
-          <span>Node.js</span>
-          <span>Express</span>
-          <span>MongoDB</span>
-          <span>REST APIs</span>
-          <span>Git</span>
           <span>Python</span>
+          <span>Java</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>Flask (Backend)</span>
+          <span>MySQL</span>
+        </div>
+
+        <h3>Tools</h3>
+        <div class="chips">
+          <span>VS Code</span>
+          <span>Git</span>
+          <span>GitHub</span>
+          <span>Jupyter Notebook</span>
+          <span>Google Colab</span>
+          <span>Hugging Face</span>
         </div>
       </aside>
 
@@ -80,32 +89,31 @@
         <h2>Experience Highlights</h2>
         <article>
           <h3>Full Stack Projects</h3>
-          <p>Built complete products from authentication and database design to polished responsive UI with deployment-ready architecture.</p>
+          <p>Built full-stack projects covering frontend, backend APIs, databases, and deployment workflows.</p>
         </article>
         <article>
-          <h3>Frontend Engineering</h3>
-          <p>Created animated, accessible interfaces with careful attention to load performance, visual hierarchy, and component reuse.</p>
+          <h3>Machine Learning Projects</h3>
+          <p>Created machine learning projects focused on model training, evaluation, and practical real-world use cases.</p>
         </article>
         <article>
-          <h3>Backend Reliability</h3>
-          <p>Implemented structured APIs, validation workflows, and resilient service layers for maintainable long-term development.</p>
+          <h3>Data Analytics Projects</h3>
+          <p>Worked on data analytics projects using cleaned datasets, insightful visualizations, and trend-based reporting.</p>
         </article>
       </section>
     </section>
 
-    <section class="project-strip">
-      <article class="project card reveal">
-        <img src="assests/1.png" alt="Portfolio CMS preview" />
-        <h3>Portfolio CMS</h3>
-      </article>
-      <article class="project card reveal">
-        <img src="assests/2.png" alt="Landing page preview" />
-        <h3>Animated Landing Page</h3>
-      </article>
-      <article class="project card reveal">
-        <img src="assests/3.png" alt="Assistant UI preview" />
-        <h3>Assistant Interface</h3>
-      </article>
+    <section class="project-panel card reveal">
+      <h2>Projects</h2>
+      <p>Add your real projects below. They are saved in your browser.</p>
+
+      <form id="projectForm" class="project-form">
+        <input type="text" id="projectTitle" placeholder="Project title" required />
+        <input type="url" id="projectLink" placeholder="Project link (https://...)" required />
+        <input type="url" id="projectImage" placeholder="Image URL (optional)" />
+        <button type="submit">Add Project</button>
+      </form>
+
+      <section class="project-strip" id="projectStrip" aria-live="polite"></section>
     </section>
 
     <section class="pdf-panel card reveal">

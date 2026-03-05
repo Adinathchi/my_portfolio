@@ -339,6 +339,41 @@ body.lock-scroll {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.project-panel {
+  margin-top: 1rem;
+}
+
+.project-panel p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.project-form {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1.1fr 1.2fr 1fr auto;
+}
+
+.project-form input,
+.project-form button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+}
+
+.project-form input {
+  background: #f8fbff;
+}
+
+.project-form button {
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .project {
   transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
@@ -358,6 +393,35 @@ body.lock-scroll {
 
 .project h3 {
   margin: 0.75rem 0 0;
+}
+
+.project-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.55rem;
+}
+
+.project-actions a,
+.project-actions button {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 0.45rem 0.7rem;
+  text-decoration: none;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.project-actions a {
+  color: var(--ink);
+  background: #f4f8fc;
+}
+
+.project-actions button {
+  background: #fff3f0;
+  color: #8f2d14;
+  cursor: pointer;
 }
 
 .pdf-panel {
@@ -451,6 +515,10 @@ body.lock-scroll {
 @media (max-width: 900px) {
   .resume-shell,
   .project-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .project-form {
     grid-template-columns: 1fr;
   }
 
