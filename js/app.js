@@ -6,28 +6,32 @@ const burstText = document.getElementById("burstText");
 const typedIntro = document.getElementById("typedIntro");
 const doorTransition = document.getElementById("doorTransition");
 const mainContent = document.getElementById("mainContent");
-const projectForm = document.getElementById("projectForm");
 const projectStrip = document.getElementById("projectStrip");
+const projectForm = document.getElementById("projectForm");
 const projectTitleInput = document.getElementById("projectTitle");
 const projectLinkInput = document.getElementById("projectLink");
 const projectImageInput = document.getElementById("projectImage");
+const projectAccessNote = document.getElementById("projectAccessNote");
+const adminLoginLink = document.getElementById("adminLoginLink");
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
 
-const PROJECT_STORAGE_KEY = "adinath_portfolio_projects";
 const FALLBACK_IMAGE = "assests/1.png";
-const defaultProjects = [
+const ADMIN_FLAG_KEY = "adinath_portfolio_admin";
+const PROJECT_STORAGE_KEY = "adinath_portfolio_projects";
+const adminProjects = [
   {
-    title: "Full Stack Project",
-    link: "https://github.com/adinath123",
+    title: "Full Stack Project Showcase",
+    link: "https://github.com/Adinathchi",
     image: "assests/1.png",
   },
   {
-    title: "Machine Learning Project",
-    link: "https://github.com/adinath123",
+    title: "Machine Learning Project Showcase",
+    link: "https://github.com/Adinathchi",
     image: "assests/2.png",
   },
   {
-    title: "Data Analytics Project",
-    link: "https://github.com/adinath123",
+    title: "Data Analytics Project Showcase",
+    link: "https://github.com/Adinathchi",
     image: "assests/3.png",
   },
 ];
@@ -88,18 +92,18 @@ function readProjects() {
     const raw = localStorage.getItem(PROJECT_STORAGE_KEY);
 
     if (!raw) {
-      return [...defaultProjects];
+      return [...adminProjects];
     }
 
     const parsed = JSON.parse(raw);
 
     if (!Array.isArray(parsed) || parsed.length === 0) {
-      return [...defaultProjects];
+      return [...adminProjects];
     }
 
     return parsed;
   } catch (error) {
-    return [...defaultProjects];
+    return [...adminProjects];
   }
 }
 
@@ -107,7 +111,11 @@ function saveProjects(projects) {
   localStorage.setItem(PROJECT_STORAGE_KEY, JSON.stringify(projects));
 }
 
-function createProjectCard(project, index) {
+function isAdmin() {
+  return localStorage.getItem(ADMIN_FLAG_KEY) === "true";
+}
+
+function createProjectCard(project, index, adminMode) {
   const article = document.createElement("article");
   article.className = "project card visible";
 
@@ -129,19 +137,22 @@ function createProjectCard(project, index) {
   openLink.target = "_blank";
   openLink.rel = "noopener noreferrer";
   openLink.textContent = "Open Project";
+  actions.append(openLink);
 
-  const removeButton = document.createElement("button");
-  removeButton.type = "button";
-  removeButton.className = "remove-project";
-  removeButton.textContent = "Remove";
-  removeButton.dataset.index = String(index);
+  if (adminMode) {
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-project";
+    removeButton.textContent = "Remove";
+    removeButton.dataset.index = String(index);
+    actions.append(removeButton);
+  }
 
-  actions.append(openLink, removeButton);
   article.append(image, title, actions);
   return article;
 }
 
-function renderProjects(projects) {
+function renderProjects(projects, adminMode) {
   if (!projectStrip) {
     return;
   }
@@ -149,38 +160,63 @@ function renderProjects(projects) {
   projectStrip.innerHTML = "";
 
   projects.forEach((project, index) => {
-    projectStrip.appendChild(createProjectCard(project, index));
+    projectStrip.appendChild(createProjectCard(project, index, adminMode));
   });
 }
 
+function setupProjectsAdminUI(adminMode) {
+  if (!projectForm || !projectAccessNote || !adminLoginLink) {
+    return;
+  }
+
+  if (adminMode) {
+    projectForm.classList.remove("hidden");
+    adminLoginLink.classList.add("hidden");
+    projectAccessNote.textContent = "Admin mode active. You can add or remove projects.";
+  } else {
+    projectForm.classList.add("hidden");
+    adminLoginLink.classList.remove("hidden");
+    projectAccessNote.textContent = "Only admin can add projects. Visitors can view project highlights only.";
+  }
+}
+
 function setupProjects() {
-  if (!projectForm || !projectStrip) {
+  if (!projectStrip) {
     return;
   }
 
   let projects = readProjects();
-  renderProjects(projects);
+  const adminMode = isAdmin();
 
-  projectForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  renderProjects(projects, adminMode);
+  setupProjectsAdminUI(adminMode);
 
-    const newProject = {
-      title: projectTitleInput.value.trim(),
-      link: projectLinkInput.value.trim(),
-      image: projectImageInput.value.trim() || FALLBACK_IMAGE,
-    };
+  if (projectForm && adminMode) {
+    projectForm.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-    if (!newProject.title || !newProject.link) {
+      const newProject = {
+        title: projectTitleInput.value.trim(),
+        link: projectLinkInput.value.trim(),
+        image: projectImageInput.value.trim() || FALLBACK_IMAGE,
+      };
+
+      if (!newProject.title || !newProject.link) {
+        return;
+      }
+
+      projects = [newProject, ...projects];
+      saveProjects(projects);
+      renderProjects(projects, true);
+      projectForm.reset();
+    });
+  }
+
+  projectStrip.addEventListener("click", (event) => {
+    if (!isAdmin()) {
       return;
     }
 
-    projects = [newProject, ...projects];
-    saveProjects(projects);
-    renderProjects(projects);
-    projectForm.reset();
-  });
-
-  projectStrip.addEventListener("click", (event) => {
     const target = event.target;
 
     if (!(target instanceof HTMLElement) || !target.classList.contains("remove-project")) {
@@ -196,12 +232,19 @@ function setupProjects() {
     projects = projects.filter((_, i) => i !== index);
 
     if (projects.length === 0) {
-      projects = [...defaultProjects];
+      projects = [...adminProjects];
     }
 
     saveProjects(projects);
-    renderProjects(projects);
+    renderProjects(projects, true);
   });
+
+  if (adminLogoutBtn && adminMode) {
+    adminLogoutBtn.addEventListener("click", () => {
+      localStorage.removeItem(ADMIN_FLAG_KEY);
+      window.location.reload();
+    });
+  }
 }
 
 async function runExperience() {

@@ -57,10 +57,18 @@
         </p>
 
         <h3>Contact</h3>
-        <ul>
+        <ul class="contact-list">
           <li>Email: <a href="mailto:adinathchipparage@gmail.com">adinathchipparage@gmail.com</a></li>
-          <li>GitHub: <a href="https://github.com/adinath123" target="_blank" rel="noopener noreferrer">adinath123</a></li>
-          <li>LinkedIn: <a href="https://linkedin.com/in/adinath-chipparage" target="_blank" rel="noopener noreferrer">adinath-chipparage</a></li>
+          <li class="check-row">
+            <input type="checkbox" checked disabled aria-label="GitHub verified" />
+            <span>GitHub:</span>
+            <a href="https://github.com/Adinathchi" target="_blank" rel="noopener noreferrer">Adinathchi</a>
+          </li>
+          <li class="check-row">
+            <input type="checkbox" checked disabled aria-label="LinkedIn verified" />
+            <span>LinkedIn:</span>
+            <a href="https://linkedin.com/in/adinath-chipparage" target="_blank" rel="noopener noreferrer">adinath-chipparage</a>
+          </li>
         </ul>
 
         <h3>Core Skills</h3>
@@ -104,15 +112,15 @@
 
     <section class="project-panel card reveal">
       <h2>Projects</h2>
-      <p>Add your real projects below. They are saved in your browser.</p>
-
-      <form id="projectForm" class="project-form">
+      <p id="projectAccessNote">Only admin can add projects. Visitors can view project highlights only.</p>
+      <a id="adminLoginLink" class="admin-link" href="login.html">Admin Login</a>
+      <form id="projectForm" class="project-form hidden">
         <input type="text" id="projectTitle" placeholder="Project title" required />
         <input type="url" id="projectLink" placeholder="Project link (https://...)" required />
         <input type="url" id="projectImage" placeholder="Image URL (optional)" />
         <button type="submit">Add Project</button>
+        <button type="button" id="adminLogoutBtn" class="secondary-btn">Logout</button>
       </form>
-
       <section class="project-strip" id="projectStrip" aria-live="polite"></section>
     </section>
 

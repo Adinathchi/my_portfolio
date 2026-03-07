@@ -1,14 +1,14 @@
 :root {
-  --ink: #101b29;
-  --ink-soft: #304862;
-  --paper: #eef3f9;
+  --ink: #10233f;
+  --ink-soft: #2e4e73;
+  --paper: #f5fbff;
   --card: #ffffff;
-  --line: #ced9e5;
-  --accent: #ea5a2e;
-  --accent-2: #f6b028;
+  --line: #c4d8ea;
+  --accent: #ff5a44;
+  --accent-2: #ffc044;
   --good: #1c9250;
-  --door-left: linear-gradient(135deg, #0f1925 0%, #1e2e42 100%);
-  --door-right: linear-gradient(225deg, #101923 0%, #213146 100%);
+  --door-left: linear-gradient(135deg, #0d2142 0%, #20487c 100%);
+  --door-right: linear-gradient(225deg, #14284e 0%, #2e5f9a 100%);
 }
 
 * {
@@ -25,14 +25,19 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 12% 12%, #ffc8a2 0%, transparent 28%),
-    radial-gradient(circle at 84% 18%, #97d6ff 0%, transparent 24%),
+    radial-gradient(circle at 12% 12%, #ffe49c 0%, transparent 28%),
+    radial-gradient(circle at 84% 18%, #8cd6ff 0%, transparent 24%),
+    radial-gradient(circle at 78% 72%, #ffc7dc 0%, transparent 26%),
     var(--paper);
 }
 
 body.lock-scroll {
   height: 100vh;
   overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .preloader {
@@ -251,7 +256,7 @@ body.lock-scroll {
 }
 
 .topbar {
-  background: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(234, 245, 255, 0.88));
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 1rem 1.25rem;
@@ -271,12 +276,13 @@ body.lock-scroll {
 }
 
 .topbar a {
-  color: var(--ink);
+  color: #fff;
   text-decoration: none;
   font-weight: 800;
-  border: 1px solid var(--ink);
+  border: 1px solid transparent;
   border-radius: 999px;
   padding: 0.4rem 0.85rem;
+  background: linear-gradient(120deg, var(--accent), #ff8750);
 }
 
 .resume-shell {
@@ -287,7 +293,9 @@ body.lock-scroll {
 }
 
 .card {
-  background: var(--card);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 252, 255, 0.95)),
+    var(--card);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 1.1rem;
@@ -311,10 +319,33 @@ body.lock-scroll {
   padding-left: 1rem;
 }
 
+.resume-left .contact-list {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
 .resume-left a {
   color: var(--ink-soft);
   font-weight: 700;
   text-decoration: none;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  background: #f3f9ff;
+  border: 1px solid #dce9f6;
+}
+
+.check-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
 }
 
 .chips {
@@ -325,8 +356,8 @@ body.lock-scroll {
 
 .chips span {
   border-radius: 999px;
-  background: #edf3f9;
-  border: 1px solid var(--line);
+  background: linear-gradient(130deg, #fff1d9, #e8f2ff);
+  border: 1px solid #d6e4f2;
   padding: 0.3rem 0.65rem;
   font-size: 0.87rem;
   font-weight: 700;
@@ -348,11 +379,19 @@ body.lock-scroll {
   color: var(--ink-soft);
 }
 
+.admin-link {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  text-decoration: none;
+  font-weight: 700;
+  color: #0e6fca;
+}
+
 .project-form {
   margin-top: 0.9rem;
   display: grid;
   gap: 0.65rem;
-  grid-template-columns: 1.1fr 1.2fr 1fr auto;
+  grid-template-columns: 1.1fr 1.2fr 1fr auto auto;
 }
 
 .project-form input,
@@ -372,6 +411,11 @@ body.lock-scroll {
   color: #fff;
   cursor: pointer;
   font-weight: 700;
+}
+
+.project-form .secondary-btn {
+  background: #f4f8fc;
+  color: var(--ink);
 }
 
 .project {
@@ -398,7 +442,7 @@ body.lock-scroll {
 .project-actions {
   margin-top: 0.75rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.55rem;
 }
 
@@ -414,11 +458,12 @@ body.lock-scroll {
 }
 
 .project-actions a {
-  color: var(--ink);
-  background: #f4f8fc;
+  color: #fff;
+  background: linear-gradient(130deg, #0c7bdc, #14a4cb);
+  border-color: transparent;
 }
 
-.project-actions button {
+.project-actions .remove-project {
   background: #fff3f0;
   color: #8f2d14;
   cursor: pointer;
@@ -450,6 +495,50 @@ body.lock-scroll {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+body.center {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.login-box {
+  width: min(440px, 94vw);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  padding: 1.1rem;
+  box-shadow: 0 18px 35px rgba(16, 27, 41, 0.12);
+  display: grid;
+  gap: 0.7rem;
+}
+
+.login-box h2,
+.login-box p {
+  margin: 0;
+}
+
+.login-box input,
+.login-box button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+}
+
+.login-box button {
+  background: linear-gradient(120deg, var(--accent), #ff8750);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-message {
+  min-height: 1.1rem;
+  color: #b02a1a;
+  font-weight: 700;
 }
 
 @keyframes robotJump {
